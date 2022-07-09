@@ -25,7 +25,7 @@ export default class VehiclesController {
 
   public async show({ params }: HttpContextContract) {
     const vehicle = await Vehicle.findOrFail(params.id)
-
+    console.table(vehicle)
     return {
       data: vehicle
     }
@@ -67,3 +67,4 @@ export default class VehiclesController {
 
 
 }
+
