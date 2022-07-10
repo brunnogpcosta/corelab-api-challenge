@@ -48,7 +48,6 @@ export default class VehiclesController {
     vehicle.brand = body.brand
     vehicle.description = body.description
     vehicle.plate = body.plate
-    vehicle.is_favorite = body.is_favorite
     vehicle.year = body.year
     vehicle.color = body.color
     vehicle.price = body.price
