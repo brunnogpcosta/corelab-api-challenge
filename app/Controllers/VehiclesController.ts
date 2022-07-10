@@ -5,14 +5,12 @@ import Vehicle from 'App/Models/Vehicle'
 export default class VehiclesController {
   public async index() {
     const vehicles = await Vehicle.all()
-
     return vehicles
   }
 
 
   public async store({ request, response }: HttpContextContract) {
     const body = request.body()
-
     const vehicle = await Vehicle.create(body)
 
     response.status(201)
@@ -25,10 +23,9 @@ export default class VehiclesController {
 
   public async show({ params }: HttpContextContract) {
     const vehicle = await Vehicle.findOrFail(params.id)
-    console.table(vehicle)
-    return {
-      data: vehicle
-    }
+    //console.table(vehicle)
+    return  vehicle
+
   }
 
   public async destroy({ params }: HttpContextContract) {
