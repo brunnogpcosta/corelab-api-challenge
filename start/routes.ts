@@ -11,7 +11,23 @@ Route.get('/api/vehicles/filter/:param', async ({ request, response }) => {
 
        //console.log("meu parametro", param)
 
-       const query = `select * from vehicles where name like "%${param}%" or brand like "%${param}%" or description like "%${param}%" or plate like "%${param}%" or year like "%${param}%" or color like "%${param}%" or price like "%${param}%"`
+       const query = `select * from vehicles where name LIKE "%${param}%" or brand LIKE "%${param}%" or description LIKE "%${param}%" or plate LIKE "%${param}%" or year LIKE "%${param}%" or color LIKE "%${param}%" or price LIKE "%${param}%"`
+       const vehicles = await Database.rawQuery(query)
+
+       response.send(vehicles)
+})
+
+
+Route.get('/api/vehicles/filter/:brand/:color/:year/:minPrice/:maxPrice/*', async ({ params, response }) => {
+       const brand = params.brand
+       const color = params.color
+       const year = params.year
+       const minPrice = params.minPrice
+       const maxPrice = params.maxPrice
+     
+       console.log("meus parametros", params['*'])
+
+       const query = `SELECT * FROM vehicles WHERE brand LIKE "%${brand}%" AND color LIKE "%${color}%" AND year = "${year}" AND price BETWEEN ${minPrice} AND ${maxPrice}`
        const vehicles = await Database.rawQuery(query)
 
        response.send(vehicles)
