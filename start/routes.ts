@@ -25,9 +25,9 @@ Route.get('/api/vehicles/filter/:brand/:color/:year/:minPrice/:maxPrice/*', asyn
        const minPrice = params.minPrice
        const maxPrice = params.maxPrice
      
-       console.log("meus parametros", params['*'])
+       //console.log("meus parametros", params['*'])
 
-       const query = `SELECT * FROM vehicles WHERE brand LIKE "%${brand}%" AND color LIKE "%${color}%" AND year = "${year}" AND price BETWEEN ${minPrice} AND ${maxPrice}`
+       const query = `SELECT * FROM vehicles WHERE brand = "${brand}" AND color = "#${color}" AND year = ${year} AND price BETWEEN ${minPrice} AND ${maxPrice}`
        const vehicles = await Database.rawQuery(query)
 
        response.send(vehicles)
